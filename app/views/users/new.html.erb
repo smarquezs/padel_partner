@@ -16,6 +16,11 @@
       
       <%= form_with model: @user, url: signup_path, local: true, class: "space-y-4" do |f| %>
         <div>
+          <%= f.label :name, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.text_field :name, required: true, class: "mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Your name" %>
+        </div>
+
+        <div>
           <%= f.label :email, class: "block text-sm font-medium text-gray-700" %>
           <%= f.email_field :email, required: true, class: "mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Email address" %>
         </div>

@@ -171,6 +171,6 @@ class FindPartnersTest < ApplicationSystemTestCase
     visit login_path
     fill_in "Email", with: user.email
     fill_in "Password", with: "password123"
-    click_button "Sign in"
+    click_button "Sign In"
   end
 end
