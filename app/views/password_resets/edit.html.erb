@@ -1,0 +1,43 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div>
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
+        Set new password
+      </h2>
+      <p class="mt-2 text-center text-sm text-gray-600">
+        Enter your new password below.
+      </p>
+    </div>
+    
+    <div class="mt-8 space-y-6">
+      <%= render 'shared/flash' %>
+      
+      <% if @user&.errors&.any? %>
+        <div class="mb-4 px-4 py-3 rounded-lg bg-red-100 border border-red-400 text-red-700">
+          <h4 class="font-medium"><%= pluralize(@user.errors.count, "error") %> prohibited this password from being saved:</h4>
+          <ul class="mt-2 list-disc list-inside">
+            <% @user.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <%= form_with model: @user, url: password_reset_path(params[:id]), method: :patch, local: true, class: "space-y-4" do |f| %>
+        <div>
+          <%= f.label :password, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password, required: true, class: "mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "New password (minimum 8 characters)" %>
+        </div>
+
+        <div>
+          <%= f.label :password_confirmation, class: "block text-sm font-medium text-gray-700" %>
+          <%= f.password_field :password_confirmation, required: true, class: "mt-1 appearance-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm", placeholder: "Confirm new password" %>
+        </div>
+
+        <div>
+          <%= f.submit "Update Password", class: "group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
