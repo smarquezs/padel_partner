@@ -1,0 +1,42 @@
+<div class="min-h-screen bg-gray-50">
+  <nav class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <h1 class="text-xl font-semibold text-gray-900">Padel Partner</h1>
+        </div>
+        <div class="flex items-center space-x-4">
+          <span class="text-gray-700">Welcome, <%= current_user.email %></span>
+          <%= button_to "Logout", logout_path, method: :delete, class: "bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium" %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+    <div class="px-4 py-6 sm:px-0">
+      <%= render 'shared/flash' %>
+      
+      <div class="bg-white overflow-hidden shadow rounded-lg">
+        <div class="px-4 py-5 sm:p-6">
+          <h2 class="text-lg font-medium text-gray-900 mb-4">Dashboard</h2>
+          <p class="text-gray-600">Welcome to your Padel Partner dashboard! This is a placeholder page for post-login functionality.</p>
+          
+          <div class="mt-6">
+            <h3 class="text-base font-medium text-gray-900 mb-2">Your Account</h3>
+            <dl class="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Email</dt>
+                <dd class="mt-1 text-sm text-gray-900"><%= current_user.email %></dd>
+              </div>
+              <div>
+                <dt class="text-sm font-medium text-gray-500">Member since</dt>
+                <dd class="mt-1 text-sm text-gray-900"><%= current_user.created_at.strftime("%B %d, %Y") %></dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
