@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   # Dashboard (post-login page)
   get "dashboard", to: "dashboard#index"
 
+  # Find partners
+  get "find_partners", to: "find_partners#index"
+
   # Root route
   root "sessions#new"
 
