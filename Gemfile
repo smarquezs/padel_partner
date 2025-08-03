@@ -66,11 +66,11 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  
+
   # Additional RSpec support gems
   gem "shoulda-matchers"
   gem "database_cleaner-active_record"
-  
+
   # SQLite for testing
   gem "sqlite3"
 end
