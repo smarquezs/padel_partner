@@ -3,6 +3,7 @@ require "test_helper"
 class UserTest < ActiveSupport::TestCase
   test "should create user with valid attributes" do
     user = User.new(
+      name: "Test User",
       email: "test@example.com",
       password: "password123",
       password_confirmation: "password123"
@@ -11,20 +12,38 @@ class UserTest < ActiveSupport::TestCase
     assert user.save
   end
 
+  test "should require name" do
+    user = User.new(
+      email: "test@example.com", 
+      password: "password123", 
+      password_confirmation: "password123"
+    )
+    assert_not user.valid?
+    assert_includes user.errors[:name], "can't be blank"
+  end
+
   test "should require email" do
-    user = User.new(password: "password123", password_confirmation: "password123")
+    user = User.new(
+      name: "Test User",
+      password: "password123", 
+      password_confirmation: "password123"
+    )
     assert_not user.valid?
     assert_includes user.errors[:email], "can't be blank"
   end
 
   test "should require password" do
-    user = User.new(email: "test@example.com")
+    user = User.new(
+      name: "Test User",
+      email: "test@example.com"
+    )
     assert_not user.valid?
     assert_includes user.errors[:password], "can't be blank"
   end
 
   test "should require password to be at least 8 characters" do
     user = User.new(
+      name: "Test User",
       email: "test@example.com",
       password: "short",
       password_confirmation: "short"
@@ -35,12 +54,14 @@ class UserTest < ActiveSupport::TestCase
 
   test "should require unique email" do
     User.create!(
+      name: "First User",
       email: "test@example.com",
       password: "password123",
       password_confirmation: "password123"
     )
     
     user = User.new(
+      name: "Second User",
       email: "test@example.com",
       password: "password123",
       password_confirmation: "password123"
@@ -51,6 +72,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "should downcase email before saving" do
     user = User.create!(
+      name: "Test User",
       email: "TEST@EXAMPLE.COM",
       password: "password123",
       password_confirmation: "password123"
@@ -60,6 +82,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "should authenticate with correct password" do
     user = User.create!(
+      name: "Test User",
       email: "test@example.com",
       password: "password123",
       password_confirmation: "password123"
@@ -70,6 +93,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "should generate password reset token" do
     user = User.new(
+      name: "Test User",
       email: "testreset@example.com",
       password: "password123",
       password_confirmation: "password123"
@@ -85,6 +109,7 @@ class UserTest < ActiveSupport::TestCase
 
   test "should detect expired password reset token" do
     user = User.create!(
+      name: "Test User",
       email: "test@example.com",
       password: "password123",
       password_confirmation: "password123"
